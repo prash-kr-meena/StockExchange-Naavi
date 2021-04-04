@@ -7,8 +7,8 @@ import java.util.List;
 import org.meena.fileio.OutputWriter;
 import org.meena.model.Order;
 import org.meena.model.TradeRecord;
-import org.meena.model.sort_comparator.SortBuyOrder;
-import org.meena.model.sort_comparator.SortSellOrder;
+import org.meena.model.comparator.SortBuyOrder;
+import org.meena.model.comparator.SortSellOrder;
 
 public class OrderBook implements OrderRepository {
 

@@ -5,14 +5,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
-import org.meena.mapper.OrderMapper;
+import org.meena.mapper.OrderDeserializer;
 import org.meena.strategy.OrderProcessingStrategy;
 
 public class FileReader implements InputReader {
 
-  public void processLineByLine(String fileName, OrderMapper mapper,
+  private final OrderDeserializer deserializer;
+  private final OrderProcessingStrategy orderProcessingStrategy;
+
+  public FileReader(OrderDeserializer deSerializer,
       OrderProcessingStrategy orderProcessingStrategy) {
 
+    this.deserializer = deSerializer;
+    this.orderProcessingStrategy = orderProcessingStrategy;
+  }
+
+  public void processLineByLine(String fileName) {
     try {
       File file = new File(fileName);
       Path path = file.toPath();
@@ -22,7 +30,7 @@ public class FileReader implements InputReader {
           .map(String::trim)
           .map(s -> s.split("\\s+"))
           .filter(arr -> arr.length > 0)
-          .map(mapper::map)
+          .map(deserializer::deserializer)
           .forEach(orderProcessingStrategy::process);
 
       lines.close();
@@ -30,5 +38,4 @@ public class FileReader implements InputReader {
       e.printStackTrace();
     }
   }
-
 }

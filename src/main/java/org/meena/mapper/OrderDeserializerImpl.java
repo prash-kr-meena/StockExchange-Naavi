@@ -6,10 +6,10 @@ import org.meena.model.Order;
 import org.meena.model.OrderType;
 
 @Slf4j
-public class OrderMapperImpl implements OrderMapper {
+public class OrderDeserializerImpl implements OrderDeserializer {
 
   @Override
-  public Order map(String[] input) {
+  public Order deserializer(String[] input) {
     Order order = null;
     try {
       order = Order.builder()
@@ -24,7 +24,6 @@ public class OrderMapperImpl implements OrderMapper {
       log.error("Issue parsing the input : {}", Arrays.toString(input));
       e.printStackTrace();
     }
-    System.out.println(order);
     return order;
   }
 

@@ -12,5 +12,6 @@ public class Order {
   private final String stock;
   private final OrderType type;
   private final Double price;
-  private final Integer quantity;
+  private Integer quantity;
+
 }

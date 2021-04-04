@@ -1,6 +1,8 @@
 package org.meena.fileio;
 
+import org.meena.model.TradeRecord;
+
 public interface OutputWriter {
 
-  void writeLineByLine(String fileName, String content);
+  void writeLineByLine(TradeRecord tradeRecord);
 }
